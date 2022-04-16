@@ -1,0 +1,123 @@
+\documentclass[a4paper,platex,dvipdfmx,ja=standard,base=10.5pt,label-section=modern]{bxjsarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[many]{tcolorbox}
+%\documentclass[a4j,11pt]{jsarticle}
+%\pagestyle{headings}
+\usepackage{amsmath,amsthm,amssymb,mathrsfs}
+% \usepackage{amsmath,amsthm,amssymb,mathrsfs}%mathrsfsは綺麗な斜体(\mathscr{})?
+%\usepackage[all]{xy}%オプション->可換図式を使うときなど
+%\usepackage[top=20truemm,bottom=15truemm,left=18truemm,right=18truemm]{geometry}
+%\addtolength{\headsep}{3mm}
+% \addtolength{\topmargin}{-6truemm}
+% \addtolength{\textheight}{8truemm}
+% \usepackage[sectionbib]{chapterbib}
+\renewcommand{\bibname}{\LARGE 参考文献}
+
+% \renewcommand{\labelsection}{§\thesection}
+\renewcommand{\thefootnote}{\arabic{footnote})}%脚注を1)のようにする
+
+\definecolor{burgundy}{rgb}{0.5, 0.0, 0.13}
+\tcbset{mytheo/.style={fonttitle=\gtfamily\sffamily\bfseries\upshape,
+                        enhanced,colframe=burgundy,colback=burgundy!2!white,colbacktitle=burgundy,
+                        boxrule=0pt,borderline south={2pt}{-2pt}{burgundy},
+                        left*=1zw,right*=1zw,
+                        theorem style=standard,
+                        breakable,sharp corners,
+                        before skip=8pt,
+                        after skip=10pt,
+                        before upper={\setlength{\parindent}{1zw}},
+                        before lower={\setlength{\parindent}{1zw}}
+                }}
+%Theorem
+\newtcbtheorem[number within=section]{theorem}{Theorem}%
+{mytheo}{thm}
+% \newcommand{\thref}[1]{{Theorem \ref{thm:#1}}}
+
+%Proposition
+\newtcbtheorem[use counter from=theorem]{proposition}{Proposition}%
+{mytheo}{pr}
+% \newcommand{\prref}[1]{{\bfseries\sffamily Proposition \ref{pr:#1}}}
+
+%Corollary
+\newtcbtheorem[use counter from=theorem]{corollary}{Corollary}%
+{mytheo}{co}
+% \newcommand{\coref}[1]{{\bfseries\sffamily Corollary \ref{co:#1}}}
+
+%Remark
+\newtcbtheorem[use counter from=theorem]{remark}{Remark}%
+{mytheo}{rem}
+% \newcommand{\remref}[1]{{\bfseries\sffamily Remark \ref{co:#1}}}
+
+%Definition
+\newtcbtheorem[use counter from=theorem]{definition}{Definition}%
+{mytheo}{def}
+% {mytheo,
+% colframe=blue!50!black,colback=blue!50!black!2!white,colbacktitle=blue!50!black,borderline south={2pt}{-2pt}{blue!50!black},}{de}
+% \newcommand{\deref}[1]{{\bfseries\sffamily Definition \ref{de:#1}}}
+
+%Lemma
+\newtcbtheorem[use counter from=theorem]{lemma}{Lemma}%
+{mytheo}{lem}
+% {mytheo,
+% colframe=green!50!black,colback=green!50!black!2!white,colbacktitle=green!50!black,borderline south={2pt}{-2pt}{green!50!black},}{le}
+% \newcommand{\leref}[1]{{\bfseries\sffamily Lemma \ref{le:#1}}}
+%Example
+\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+\newtcbtheorem[use counter from=theorem]{example}{Example}%
+{mytheo}{eg}
+% {mytheo,
+% colframe=charcoal,colback=charcoal!2!white,colbacktitle=charcoal,borderline south={2pt}{-2pt}{charcoal},}{ex}
+% \newcommand{\exref}[1]{{\bfseries\sffamily Example \ref{ex:#1}}}
+
+%Theorem
+\newtcbtheorem[number within=section]{theorem_a}{Theorem}%
+{mytheo}{thm}
+% \newcommand{\tharef}[1]{{\bfseries\sffamily Theorem \ref{th_a:#1}}}
+%Proposition
+\newtcbtheorem[use counter from=theorem_a]{proposition_a}{Proposition}%
+{mytheo}{pr}
+% \newcommand{\praref}[1]{{\bfseries\sffamily Proposition \ref{pr:#1}}}
+%Corollary
+\newtcbtheorem[use counter from=theorem_a]{corollary_a}{Corollary}%
+{mytheo}{co}
+% \newcommand{\coraef}[1]{{\bfseries\sffamily Corollary \ref{co:#1}}}
+%Definition
+\newtcbtheorem[use counter from=theorem_a]{definition_a}{Definition}%
+{mytheo}{def}
+% {mytheo,
+% colframe=blue!50!black,colback=blue!50!black!2!white,colbacktitle=blue!50!black,borderline south={2pt}{-2pt}{blue!50!black},}{de}
+% \newcommand{\dearef}[1]{{\bfseries\sffamily Definition \ref{de:#1}}}
+
+%Lemma
+\newtcbtheorem[use counter from=theorem_a]{lemma_a}{Lemma}%
+{mytheo}{lem}
+% {mytheo,
+% colframe=green!50!black,colback=green!50!black!2!white,colbacktitle=green!50!black,borderline south={2pt}{-2pt}{green!50!black},}{le}
+% \newcommand{\learef}[1]{{\bfseries\sffamily Lemma \ref{le:#1}}}
+
+%Example
+\definecolor{charcoal}{rgb}{0.21, 0.27, 0.31}
+\newtcbtheorem[use counter from=theorem_a]{example_a}{Example}%
+{mytheo}{eg}
+% {mytheo,
+% colframe=charcoal,colback=charcoal!2!white,colbacktitle=charcoal,borderline south={2pt}{-2pt}{charcoal},}{ex}
+
+%/*式の途中で改頁できる*/
+\allowdisplaybreaks
+
+\makeatletter
+\renewcommand{\theequation}{%
+        \thesection.\arabic{equation}}
+\@addtoreset{equation}{section}
+\makeatother
+
+%/*コマンド*/
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\F}{\mathcal{F}}

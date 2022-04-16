@@ -1,0 +1,235 @@
+\input{0_preamble.tex}
+
+\title{Skorohodの表現定理}
+\author{@schrott512}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{はじめに}
+本記事ではSkorohodの表現定理について紹介する.
+Skorohodの定理の主張を簡単に言えば, 確率測度の列がある確率測度に収束するならば, 適当な確率空間上にそれぞれに対応する分布を持つ確率変数列と確率変数を同時に定義することができて, さらにその列が概収束するようにすることができる, というものである.
+
+もっと大雑把だがより分かりやすい表現を目指すなら, 次のようにいうことができる.
+分布収束は対象の確率変数たちが必ずしも同じ確率空間上にいる必要はないが, それゆえ取り扱いが不便なこともある.
+しかし, 分布収束するなら共通の確率空間へ引っ越しできる, というものである.
+このことは応用例の節で具体的にみる.
+
+\section{準備}
+ここでは, 諸事項をおさらいしておこう.
+
+\begin{definition}{確率測度の弱収束}{}
+    $\mu,\mu_1,\mu_2,\dots$を可測空間$S$上の確率測度とする.
+    列$(\mu_n)_n$が$\mu$に弱収束するとは, $S$上の任意の有界連続関数$f$に対し,
+    \begin{align*}
+        \lim_{n\to\infty}\int f \,d\mu_n=\int f \,d\mu
+    \end{align*}
+    が成り立つことをいう.
+    またこのとき, $\mu_n\Rightarrow \mu~(n\to\infty)$とかく.
+
+    また, $S$-値確率変数$X,X_1,X_2,\dots$とする.
+    $(X_n)_n$の分布の列が$X$の分布に弱収束するとき, $X_n\Rightarrow X~(n\to\infty)$とかき, $X_n$が$X$に分布収束するという.
+\end{definition}
+
+この先の議論において測度の台が登場するが, 次のものが一般的な定義のようである.
+
+\begin{definition}{測度の台-1}{def_1}
+    $S$を位相空間, $\mu$を$S$上の測度とする.
+    $x\in S$で, その任意の開近傍$U\subset S$に対し$\mu(U)>0$となるもの全体を$\mu$の台と呼び, $\textrm{supp}(\mu)$で表す.
+\end{definition}
+
+定義より直ちに$\mu$の台が$S$の閉集合であることが分かる.
+また, 次が知られている.
+
+\begin{lemma}{}{lem_1}
+    $S$を位相空間とし, $\mu$を$S$上の測度とする.
+    また, 次をおく:
+    \begin{itemize}
+        \item[(i)] $S$は可算開基を持つ.
+        \item[(ii)] $S$は局所コンパクトハウスドルフ空間で, かつ$\mu$はラドン測度である.
+    \end{itemize}
+    このとき, (i)または(ii)が成り立つならば,
+    \begin{align}
+        \textrm{supp}(\mu) & = \bigcap_{\substack{\text{$C$: closed} \\ \mu(S\setminus C)=0}}C \label{eq:1}
+    \end{align}
+    である.
+\end{lemma}
+
+参考文献において測度の台が現れるが, どのような定義を採用しているか見つからなかった.
+しかし, 議論の中で\eqref{eq:1}の性質が用いられている.
+$S$自体に(i),(ii)を仮定してもよいが, 広く普及していると思われる参考文献中の定理のステートメントに合わせるため, 本記事では台の定義は次のものを採用することにする.
+
+\begin{definition}{測度の台-2}{def_2}
+    $S$を位相空間, $\mu$を$S$上の測度とする. Lemma \ref{lem:lem_1}の\eqref{eq:1}を$\mu$の台と呼ぶ.
+\end{definition}
+
+例えば, $S$が可分距離空間の場合は, (i)が満たされ, Definition \ref{def:def_1}, \ref{def:def_2}は一致する.
+
+確率測度の弱収束に関するよく知られた事実を参照しておく.
+
+\begin{proposition}{}{prop_2}
+    $\mu,\mu_1,\mu_2,\dots$を距離空間$S$上の確率測度とする. このとき次の(1),(2)は同値である.
+    \begin{itemize}
+        \item[(1)] $\mu_n\Rightarrow \mu~(n\to\infty)$.
+        \item[(2)] $S$のボレル集合$A$が$\mu(\partial A)=0$を満たすならば, $\lim_{n\to\infty}\mu_n(A)=\mu(A)$である.
+    \end{itemize}
+\end{proposition}
+
+\section{Skorohodの表現定理}
+$(S,d)$を距離空間とし, $x\in S$を中心とする$\varepsilon$-開球を$B(x,\varepsilon)$で表す.
+また, $S$のボレル集合族を$\mathcal{B}(S)$で表す.
+
+\begin{theorem}{Skorohodの表現定理}{thm:3}
+    $\mu,\mu_1,\mu_2,\dots$を$S$上の確率測度とし, $\mu$の台は可分とする.
+    このとき, $\mu_n\Rightarrow\mu~(n\to\infty)$ならば, ある確率空間$(\Omega,\mathcal{F},P)$上に$S$-値確率変数$X,X_1,X_2,\dots$を定義でき, さらに各$X_n$と$X$の分布がそれぞれ$\mu_n$, $\mu$でかつ$X_n\to X~(n\to\infty),\,\text{$P$-a.s.}$となるようにできる.
+\end{theorem}
+
+主張にある収束は$S$の位相における収束であることに注意する.
+
+この定理の証明に用いる次の補題を先に示す.
+
+\begin{lemma}{}{lem_4}
+    $\mu$を台が可分な$S$上の確率測度とする.
+    このとき, 任意の$\varepsilon>0$に対し, $S$のある有限個の非交差かつ$S=\bigcup_{i=0}^kB_i$を満たす$B_0,B_1,\dots,B_k\in\mathcal{B}(S)$で, 次を満たすものが存在する.
+    \begin{itemize}
+        \item[(i)] $\mu(B_0)<\varepsilon$,
+        \item[(ii)] $\mu(\partial B_i)=0, \quad i=0,1,\dots,k$,
+        \item[(iii)] $\textrm{diam}\,B_i:= \sup_{x,y\in B_i}d(x,y)<\varepsilon, \quad i=1,2,\dots,k$.
+    \end{itemize}
+\end{lemma}
+\begin{proof}
+    $\varepsilon>0$とし, $M=\textrm{supp}(\mu)$とおく.
+    $x\in M$を任意に取る.
+    このとき, 各$j=1,2,\dots$に対して$\mu(\partial B(x,r))\geq 1/j$を満たす$0<r<\varepsilon/2$は高々$j$個なので, $\mu(\partial B(x,r))>0$を満たす$0<r<\varepsilon/2$は高々可算個である.
+    よって$\mu(\partial B(x,r))=0$を満たす$0<r<\varepsilon/2$は無数に存在する.
+
+    ここで, $M$が可分であることと上に示した事実により, $M$は$\mu(\partial B(x,r))=0$を満たす高々可算個の$(B(x,r))_{x\in M,\,0<r<\varepsilon/2}$で被覆される.
+    その被覆を$A_1,A_2,\dots$とする.
+    $\mu(\bigcup_{i\geq 1}A_i)\geq \mu(M)=1$と測度の連続性より, 十分大きな$k$に対して
+    \begin{align}
+        \mu\left(\bigcup_{i=1}^k A_i\right)>1-\varepsilon \label{eq:2}
+    \end{align}
+    とできる.
+    $B_0=S\setminus \bigcup_{i=1}^k A_i$とし,
+    \begin{align*}
+        \begin{cases}
+            B_1 = A_1,                                                &               \\[.5em]
+            \displaystyle B_i = A_i \setminus \bigcup_{j=1}^{i-1}A_j, & i=2,3,\dots,k
+        \end{cases}
+    \end{align*}
+    とおく.
+    $\mu(B_0)=1-\mu(\bigcup_{i=1}^k A_i)$と\eqref{eq:2}より(i)が分かり, また各$i$に対し$B_i\subset A_i$より(iii)を得る.
+    そして各$i$に対して$\partial B_i\subset \bigcup_{i=1}^{k}\partial A_i$と$\mu(\partial A_i)=0$より, (ii)が得られる.
+\end{proof}
+
+\begin{proof}[Proof of Theorem \ref{thm:thm:3}]
+    $m=1,2,\dots$に対し$\varepsilon_m=1/2^m$とおく.
+    Lemma \ref{lem:lem_4}より, 各$m$に対し, 非交差な$B^m_0,\dots,B^m_{k_m}\in\mathcal{B}(S)$, $S=\bigcup_{i=0}^{k_m}B_i^m$で,
+    \begin{itemize}
+        \item[(i)] $\mu(B^m_0)<\varepsilon_m$,
+        \item[(ii)] $\mu(\partial B^m_i)=0, \quad i=0,1,\dots,k_m$,
+        \item[(iii)] $\textrm{diam}\,B^m_i<\varepsilon_m, \quad i=1,2,\dots,k_m$
+    \end{itemize}
+    とする.
+    ここで, もし$\mu(B^m_i)=0$であるような$B^m_i~(i\geq 1)$があれば, それらすべてと$B^m_0$との合併を新たに$B^m_0$をみなすことで(i)-(iii)が満たされ, また合併されたもの以外の$B^m_i$については$\mu(B^m_i)>0$である.
+    したがって, 最初からすべての$B^m_i~(i\geq 1)$が$\mu(B^m_i)>0$を満たすと仮定してよい.
+
+    $\mu_n\Rightarrow\mu~(n\to\infty)$なので, 各$m$に対し(ii)とProposition \ref{pr:prop_2}より, 適当な$n_m$が存在して, $n\geq n_m$ならば
+    \begin{align*}
+        \mu_n(B^m_i) \geq (1-\varepsilon_m)\mu(B^m_i), \quad i=0,1,\dots,k_m
+    \end{align*}
+    である.
+    ここで適当に番号を取り換えて, $1<n_1<n_2<\cdots$としておく.
+
+    $(\Omega^1,\mathcal{F}^1,P^1)=(S,\mathcal{B}(S),\mu)$, $(\Omega^2_n,\mathcal{F}^2_n,P^2_n)=(S,\mathcal{B}(S),\mu_n)~(n\geq 1)$とおく.
+    また, $n\geq n_1$, $i\geq 1$と$A\in\mathcal{B}(S)$に対し,
+    \begin{align*}
+        \begin{cases}
+            \displaystyle \nu_{n,i}(A) = \mu_n(A \mid B^m_i)= \frac{\mu_n(A\cap B^m_i)}{\mu_n(B^m_i)}, \\[.5em]
+            \displaystyle \nu_n(A) = \varepsilon_m^{-1} \sum_{i=0}^{k_m} \mu_n(A\mid B^m_i)\{\mu_n(B^m_i)-(1-\varepsilon_m)\mu(B^m_i)\},
+        \end{cases}
+        \qquad ~\text{if $n_m\leq n < n_{m+1}$}
+    \end{align*}
+    で定め, $(\Omega^3_{n,i},\mathcal{F}^3_{n,i},P^3_{n,i})=(S,\mathcal{B}(S),\nu_{n,i})~(n\geq n_1,\,i\geq 1)$, $(\Omega^4_n,\mathcal{F}^4_n,P^4_n)=(S,\mathcal{B}(S),\nu_{n})~(n\geq n_1)$とおく.
+    また, $(\Omega^5,\mathcal{F}^5,P^5)=([0,1],\mathcal{B}([0,1]),\lambda)$とおく.
+    ただし, $\lambda$は$\mathbb{R}$上のルベーグ測度である.
+
+    さて, $(\Omega,\mathcal{F},P)$をこれらすべての直積確率空間, すなわち
+    \begin{align*}
+         & (\Omega,\mathcal{F},P)                                                                                                       \\
+         & \quad =(\Omega^1,\mathcal{F}^1,P^1)\times \prod_{n\geq 1} (\Omega^2_n,\mathcal{F}^2_n,P^2_n)\times\prod_{\substack{n\geq n_1 \\i\geq 1}}(\Omega^3_{n,i},\mathcal{F}^3_{n,i},P^3_{n,i})\times \prod_{n\geq n_1}(\Omega^4_n,\mathcal{F}^4_n,P^4_n) \times (\Omega^5,\mathcal{F}^5,P^5)
+    \end{align*}
+    とおく.
+    そして$\omega=(\omega^1,\omega^2_1,\dots,\omega^2_n,\dots,\omega^3_{n,i},\dots,\omega^4_n,\dots,\omega^5)\in\Omega$と$n\geq 1$に対し,
+    \begin{align*}
+         & X(\omega) = \omega^1, \\[.5em]
+         & X_n(\omega) =
+        \begin{cases}
+            \omega^2_n,                                                                                                                                                                       & n<n_1                \\[.5em]
+            \displaystyle \sum_{i=0}^{k_m} \boldsymbol{1}_{\{\omega^5\leq 1-\varepsilon_m,~ \omega^1\in B^m_i\}}\,\omega^3_{n,i} + \boldsymbol{1}_{\{\omega^5>1-\varepsilon_m\}}\,\omega^4_n, & n_m \leq n < n_{m+1}
+        \end{cases}
+    \end{align*}
+    と定める.
+    このとき$X$の分布は$\mu$である.
+    また$n_m \leq n < n_{m+1}$と$A\in\mathcal{B}(S)$に対し,
+    \begin{align*}
+        P(X_n\in A)
+         & = \sum_{i=0}^{k_m}(1-\varepsilon_m)\mu(B^m_i)\nu_{n,i}(A) + \varepsilon_m \nu_n(A) \\
+         & = \mu_n(A)
+    \end{align*}
+    であり, $n<n_1$のときは定め方から明らかに$P(X_n\in A)=\nu_n(A)$である.
+    したがって, すべての$n\geq 1$について$X_n$の分布は$\mu_n$である.
+
+    $m\geq 1$に対し$E_m=\{\omega^1\notin B^m_0,~\omega^5\leq 1-\varepsilon_m\}$, $E=\lim\inf_{m\to\infty}E_m=\bigcup_{j\geq 1}\bigcap_{k\geq j}E_k$とする.
+    $\omega\in E_m$, $n_m\leq n<n_{m+1}$とすると, ある$i$に対し$\omega^1\in B^m_i$であり, このとき定め方から$X_n(\omega)=\omega^3_{n,i}$である.
+    $\omega^3_{n,i}\in B^m_i$ならば, (iii)より$d(X_n(\omega),X(\omega))<\varepsilon_m$である.
+    すなわち
+    \begin{align}
+        E_m \subset \bigcap_{n_m\leq n<n_{m+1}}\bigcup_{i=1}^{k_m} \left( \{d(X_n(\omega),X(\omega))<\varepsilon_m\} \cup \{\omega^1\in B^m_i,~\omega^3_{n,i}\notin B^m_i\} \right) \label{eq:3}
+    \end{align}
+    である.
+    また, $P(\omega^1\in B^m_i,~\omega^3_{n,i}\notin B^m_i)=\mu(B^m_i)\nu_{n,i}(S\setminus B^m_i)=0$である.
+    したがって,
+    \begin{align}
+        E \subset \left\{\lim_{n\to\infty}X_n(\omega)=X(\omega)\right\} \cup N \label{eq:4}
+    \end{align}
+    を得る. ただし, $N\in\mathcal{F}$は\eqref{eq:3}から得られる$P$-零集合である.
+
+    \begin{align*}
+        \sum_{m=1}^\infty P(S\setminus E_m)
+         & \leq \sum_{m=1}^\infty (\mu(B^m_0)+\varepsilon_m) \\[.5em]
+         & \leq \sum_{m=1}^\infty \frac{1}{2^{m-1}} < \infty
+    \end{align*}
+    なので, ボレル-カンテリの補題より$P(E)=1$である.
+    これと\eqref{eq:4}より, $\lim_{n\to\infty}X_n=X,\,\text{$P$-a.s.}$を得る.
+\end{proof}
+
+\section{応用例}
+$C([0,\infty);\mathbb{R})$を$[0,\infty)$上で定義された実数値連続関数全体とし, 広義一様収束位相を入れた空間とする.
+
+$\xi_1,\xi_2,\dots$を期待値$0$, 分散$1$の独立同分布確率変数列とし, $S_n=\xi_1+\dots+\xi_n$とおく.
+このとき,
+\begin{align*}
+    W^n_t = \frac{S_{[nt]}}{\sqrt{n}} + (nt-[nt])\frac{\xi_{[nt]+1}}{\sqrt{n}}, \quad t\geq 0
+\end{align*}
+とおくと, $W^n=(W^n_t)_{t\geq 0}\in C([0,\infty);\mathbb{R})$である.
+ただし, $[x]$は$x$を超えない最大の整数を表す.
+したがって$W^n$は$C([0,\infty);\mathbb{R})$上に確率測度を誘導し, その像測度を$P_{W^n}=P\circ(W^n)^{-1}$とする.
+
+次の定理が知られている.
+
+\begin{theorem}{Donskerの不変原理}{}
+    $C([0,\infty);\mathbb{R})$の位相のもと, $W^n\Rightarrow W~(n\to\infty)$である.
+    ただし, $W=(W_t)_{t\geq 0}$は1次元標準ブラウン運動である.
+    すなわち, $P_{W^n}$は1次元標準Wiener測度に弱収束する.
+\end{theorem}
+
+さて, 上の定理とTheorem \ref{thm:thm:3}より, 共通の確率空間$(\Omega,\mathcal{F},P)$がとれて, この確率空間上に$\xi_1,\xi_2,\dots$と1次元標準ブラウン運動$W$が定義されているとみなすことができ, 任意の$T>0$に対し,
+\begin{align*}
+    \sup_{0\leq t\leq T}|W^n_t-W_t|\to 0, \quad n\to\infty, \quad\text{$P$-a.s.}
+\end{align*}
+が成り立つ.
+
+\end{document}
